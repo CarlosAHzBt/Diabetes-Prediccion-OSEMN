@@ -4,6 +4,8 @@
 
 Este proyecto es un estudio enfocado en la predicción de si un paciente desarrollará diabetes. El principal objetivo es aplicar la metodología OSEMN pipeline para estructurar el flujo de trabajo de análisis de datos.
 
+Pima Indians Diabetes Database
+El dataset corresponde al siguiente enlace [https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database]
 ## Metodología OSEMN
 
 La metodología OSEMN se compone de las siguientes etapas:
@@ -68,3 +70,13 @@ A continuación se muestra el rendimiento del modelo cargado en esta practica en
    macro avg       0.74      0.73      0.73       154
 weighted avg       0.76      0.76      0.76       154
 ```
+
+### Conclusión del Reporte
+Clase desbalanceada: La clase 0 (sin diabetes) tiene más ejemplos que la clase 1 (con diabetes). Esto puede afectar el rendimiento del modelo, ya que es más difícil para el modelo detectar correctamente los casos de clase 1 (diabetes).
+
+Precision vs Recall:
+
+Para la clase 1, la precisión (0.67) es mayor que el recall (0.61). Esto significa que, aunque la mayoría de las predicciones positivas de diabetes fueron correctas, el modelo no identificó todos los casos reales de diabetes, lo que podría ser preocupante en un contexto médico.
+F1-Score más bajo para la clase 1: Indica que el modelo tiene dificultades para equilibrar precisión y recall para esta clase. En el contexto de salud, donde es crucial minimizar los falsos negativos (personas con diabetes no diagnosticadas), sería necesario mejorar el recall de esta clase.
+
+Accuracy Global (0.76): Aunque el modelo tiene un rendimiento aceptable en términos de precisión general, es importante considerar que la accuracy puede ser engañosa en problemas con clases desbalanceadas.
