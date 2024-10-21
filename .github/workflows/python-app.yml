@@ -31,7 +31,7 @@ jobs:
           cat coverage.txt  # Muestra el reporte en la salida de consola
 
       - name: Upload Coverage Report
-        uses: actions/upload-artifact@v2  # Guarda el reporte de cobertura como artefacto
+        uses: actions/upload-artifact@v3  # Guarda el reporte de cobertura como artefacto
         with:
           name: coverage-report
           path: coverage.txt
