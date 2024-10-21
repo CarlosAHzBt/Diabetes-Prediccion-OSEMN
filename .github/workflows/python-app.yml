@@ -1,0 +1,24 @@
+name: Python CI
+
+on: [push, pull_request]  # Ejecuta la acción en cada push o pull request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Usa una máquina Ubuntu para ejecutar las pruebas
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Obtiene el código del repositorio
+
+      - name: Set up Python
+        uses: actions/setup-python@v2  # Configura la versión de Python
+        with:
+          python-version: '3.8'  # Especifica la versión de Python
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Actualiza pip
+          pip install -r requirements.txt  # Instala dependencias
+
+      - name: Run Tests
+        run: pytest tests/  # Ejecuta las pruebas
