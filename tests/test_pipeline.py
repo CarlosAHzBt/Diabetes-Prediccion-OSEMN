@@ -7,8 +7,8 @@ from src.model import create_pipeline, train_model, split_data
 from src.utils import load_data, save_dataframe
 
 # Ruta de prueba para archivos generados
-TEST_RAW_DATA_PATH = "data/raw/test_dataset.csv"
-TEST_PROCESSED_DATA_PATH = "data/processed/test_cleaned_data.csv"
+TEST_RAW_DATA_PATH = "dataset/raw/test_dataset.csv"
+TEST_PROCESSED_DATA_PATH = "dataset/processed/test_cleaned_data.csv"
 TEST_MODEL_PATH = "models/test_model.joblib"
 
 @pytest.fixture(scope="module")
