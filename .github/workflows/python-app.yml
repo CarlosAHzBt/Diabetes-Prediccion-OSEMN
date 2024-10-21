@@ -1,24 +1,37 @@
 name: Python CI
 
-on: [push, pull_request]  # Ejecuta la acción en cada push o pull request
+on: [push, pull_request]  # Ejecuta el flujo de trabajo en cada push o pull request
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Usa una máquina Ubuntu para ejecutar las pruebas
+    runs-on: ubuntu-latest  # Utiliza Ubuntu para la ejecución
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2  # Obtiene el código del repositorio
 
       - name: Set up Python
-        uses: actions/setup-python@v2  # Configura la versión de Python
+        uses: actions/setup-python@v2  # Configura Python
         with:
-          python-version: '3.8'  # Especifica la versión de Python
+          python-version: '3.8'  # Versión de Python requerida
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip  # Actualiza pip
-          pip install -r requirements.txt  # Instala dependencias
+          pip install -r requirements.txt  # Instala dependencias desde el archivo
 
       - name: Run Tests
-        run: pytest tests/  # Ejecuta las pruebas
+        run: |
+          pytest tests/ --disable-warnings  # Ejecuta las pruebas unitarias con pytest
+
+      - name: Generate Coverage Report
+        run: |
+          pip install pytest-cov  # Instala pytest-cov para cobertura de código
+          pytest --cov=src tests/ > coverage.txt  # Genera reporte de cobertura
+          cat coverage.txt  # Muestra el reporte en la salida de consola
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v2  # Guarda el reporte de cobertura como artefacto
+        with:
+          name: coverage-report
+          path: coverage.txt
